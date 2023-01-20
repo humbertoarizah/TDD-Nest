@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  back:
+    build: .
+    container_name: back
+    hostname: back
+    ports:
+      - 3000:3000
+    network_mode: host
+    volumes:
+      - ./src/:/app/src/
+      - .env/:/app/.env
+    restart: unless-stopped
+    depends_on: 
+      - mongodb
+  mongodb:
+    image: mongo:latest
+    container_name: mongo
+    hostname: mongo
+    ports:
+      - 27017:27017
+    environment:
+      MONGODB_DATABASE: dev
+    volumes:
+      - ./mongo:/data/db
+    restart: always
+    network_mode: host
