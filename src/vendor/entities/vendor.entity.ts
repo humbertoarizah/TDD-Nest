@@ -10,7 +10,7 @@ export class Vendor extends Document {
   updatedAt: Date;
   @Prop({ type: String, required: true })
   name: string;
-  @Prop({ type: String, required: false }) // TODO: Regex
+  @Prop({ type: String, required: false, validate: /(^[0-9]+-{1}[0-9]{1})/g })
   id: string;
   @Prop({ type: String, required: true })
   contactName: string;
